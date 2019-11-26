@@ -16,6 +16,10 @@ function NodeElement(props) {
   const { children, attributes } = treeObj;
 
   const [edit, editNode] = useState(false);
+  const [customAttribute, addCustomAttribute] = useState({
+    activateInput: false,
+    value: null
+  });
   const [isListVisible, toggleList] = useState(true);
 
   const collapseIcon = () => {
@@ -60,9 +64,39 @@ function NodeElement(props) {
   };
 
   const addCustomPropsIcon = () => {
+    return customAttribute.activateInput ? (
+      <div
+        className="d-inline-block custom-property"
+        onClick={() => {
+          addCustomAttribute({ ...customAttribute, activateInput: false });
+          addPropsToNode(treeObj, customAttribute.value);
+        }}
+      >
+        Add item
+      </div>
+    ) : (
+      <div
+        className="d-inline-block custom-property"
+        onClick={() => {
+          addCustomAttribute({ ...customAttribute, activateInput: true });
+        }}
+      >
+        Open input
+      </div>
+    );
+  };
+
+  const insertCustomProp = () => {
     return (
-      <div className="d-inline-block" onClick={() => addPropsToNode(treeObj)}>
-        add custom
+      <div>
+        <input
+          type="text"
+          className="form-control length d-inline-block"
+          placeholder="Attribute name"
+          onChange={e =>
+            addCustomAttribute({ ...customAttribute, value: e.target.value })
+          }
+        />
       </div>
     );
   };
@@ -72,11 +106,12 @@ function NodeElement(props) {
       {edit && (
         <input
           type="text"
-          className="form-control length"
+          className="form-control length d-inline-block"
           placeholder="Edit item"
           onChange={e => setNodeText(treeObj, e.target.value)}
         />
       )}
+      {customAttribute.activateInput && insertCustomProp()}
       <div className="action-elements">
         {collapseIcon()}
         {addIcon()}
@@ -84,13 +119,14 @@ function NodeElement(props) {
         {addCustomPropsIcon()}
         {deleteIcon()}
       </div>
-
-      {attributes.map((val, i) => (
-        <Checkbox id={i} value={val} />
-      ))}
+      <div id="checkbox-container">
+        {attributes.map((val, i) => (
+          <Checkbox key={i} id={i} value={val} />
+        ))}
+      </div>
       {isListVisible &&
         children.map((x, i) => (
-          <div className="child">
+          <div className="child" key={i}>
             <span
               draggable
               onDrag={e => onDragCallback(e, treeObj)}
@@ -101,7 +137,6 @@ function NodeElement(props) {
             </span>
             {x.children && (
               <NodeElement
-                key={i}
                 children={x.children}
                 addNode={addNode}
                 deleteNode={deleteNode}

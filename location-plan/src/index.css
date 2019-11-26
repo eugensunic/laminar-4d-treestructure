@@ -72,3 +72,11 @@ input.length {
   font-size: 24px;
   cursor: pointer;
 }
+
+.custom-property {
+  border: 1px solid #c7c4c4;
+  padding: 0px 5px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #181818;
+  cursor: pointer;
+}

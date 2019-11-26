@@ -1,15 +1,16 @@
 import React from 'react';
 
 function Checkbox(props) {
+  const { id, value } = props;
   return (
-    <div className="form-check">
+    <div className="form-check d-inline-block">
       <input
-        className="form-check-input d-inline-block"
+        className="form-check-input"
         type="checkbox"
-        id={'gridCheck' + props.id}
+        id={'gridCheck' + id}
       />
-      <label className="form-check-label" for={'gridCheck' + props.id}>
-        {props.value}
+      <label className="form-check-label" htmlFor={'gridCheck' + id}>
+        {value}
       </label>
     </div>
   );

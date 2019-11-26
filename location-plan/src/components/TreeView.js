@@ -25,8 +25,8 @@ function TreeView() {
     setState(JSON.parse(JSON.stringify(treeObj)));
   };
 
-  const addPropsToNode = obj => {
-    obj.attributes.push('value1');
+  const addPropsToNode = (obj, value) => {
+    obj.attributes.push(value);
     setState(JSON.parse(JSON.stringify(treeObj)));
   };
 
