@@ -1,3 +1,4 @@
+/* default html tags  */
 body {
   background-color: #fdfdfd;
   min-height: 100%;
@@ -17,7 +18,7 @@ code {
 input.length {
   width: 220px;
 }
-
+/* static display elements */
 .parent {
   margin-left: 20px;
   padding: 7px;
@@ -30,6 +31,12 @@ input.length {
   padding: 7px;
 }
 
+.content {
+  font-size: 21px;
+  color: #292626;
+}
+
+/* action elements */
 .add-icon {
   border-radius: 40px;
   width: 28px;
@@ -64,9 +71,4 @@ input.length {
 .arrow-icon {
   font-size: 24px;
   cursor: pointer;
-}
-
-.content {
-  font-size: 21px;
-  color: #292626;
 }

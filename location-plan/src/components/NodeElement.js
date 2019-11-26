@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function NodeElement(props) {
   const {
@@ -11,7 +11,7 @@ function NodeElement(props) {
     onDragOverCallback,
     onDropCallback
   } = props;
-  const [cnt, setCounter] = useState(0);
+
   const [edit, editNode] = useState(false);
   const [isListVisible, toggleList] = useState(true);
 
@@ -30,10 +30,7 @@ function NodeElement(props) {
   };
   const addIcon = () => {
     return (
-      <div
-        className="add-icon d-inline-block"
-        onClick={() => setCounter(cnt + 1)}
-      >
+      <div className="add-icon d-inline-block" onClick={() => addNode(treeObj)}>
         +
       </div>
     );
@@ -58,10 +55,6 @@ function NodeElement(props) {
       </div>
     );
   };
-  useEffect(() => {
-    if (!cnt) return;
-    addNode(treeObj, cnt);
-  }, [cnt]);
 
   return (
     <div className="parent">

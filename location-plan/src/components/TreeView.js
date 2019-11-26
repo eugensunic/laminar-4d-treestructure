@@ -3,21 +3,18 @@ import NodeElement from './NodeElement';
 
 function TreeView() {
   const [treeObj, setState] = useState({
-    id: 0,
     content: '',
     children: []
   });
 
   const [reference, setReference] = useState(null);
 
-  const addNode = (obj, cnt) => {
+  const addNode = obj => {
     console.log(treeObj);
     obj.children.push({
       content: `add text`,
-      id: cnt,
       children: []
     });
-    // deep clone object
     setState(JSON.parse(JSON.stringify(treeObj)));
   };
 
@@ -31,6 +28,7 @@ function TreeView() {
     setState(JSON.parse(JSON.stringify(treeObj)));
   };
 
+  // drag-drop functions
   const onDragCallback = (e, obj) => {
     console.log('dragging!');
     e.stopPropagation();
@@ -51,7 +49,6 @@ function TreeView() {
     // let temp = obj;
     treeObj.children = reference.children;
     // reference.children = temp.children;
-
     // obj.children = [{ content: 'kabuuuum' }];
     // setState(JSON.parse(JSON.stringify(treeObj)));
   };
