@@ -1,4 +1,6 @@
 body {
+  background-color: #fdfdfd;
+  min-height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,12 +14,59 @@ code {
     monospace;
 }
 
-.comments {
+input.length {
+  width: 220px;
+}
+
+.parent {
   margin-left: 20px;
   padding: 7px;
 }
-.comment {
-  border: 1px solid grey;
+
+.child {
+  border: 1px solid #e7e3e3;
   margin-left: 20px;
+  border-radius: 3px;
   padding: 7px;
+}
+
+.add-icon {
+  border-radius: 40px;
+  width: 28px;
+  text-align: center;
+  background: green;
+  color: white;
+  cursor: pointer;
+  height: 25px;
+  margin: 5px;
+}
+
+.delete-icon {
+  border-radius: 40px;
+  width: 28px;
+  text-align: center;
+  background: #dd7f7f;
+  color: white;
+  cursor: pointer;
+  height: 25px;
+  margin: 5px;
+}
+
+.edit-icon {
+  font-size: 24px;
+  position: relative;
+  top: 3px;
+  margin: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.content {
+  font-size: 21px;
+  color: #292626;
 }

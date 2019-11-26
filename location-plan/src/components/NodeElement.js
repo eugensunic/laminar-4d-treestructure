@@ -13,38 +13,82 @@ function NodeElement(props) {
   } = props;
   const [cnt, setCounter] = useState(0);
   const [edit, editNode] = useState(false);
-  const [isVisible, toggleList] = useState(true);
+  const [isListVisible, toggleList] = useState(true);
 
+  const collapseIcon = () => {
+    return isListVisible ? (
+      <i
+        onClick={() => toggleList(!isListVisible)}
+        className="fas fa-angle-down arrow-icon"
+      ></i>
+    ) : (
+      <i
+        onClick={() => toggleList(!isListVisible)}
+        className="fas fa-angle-right arrow-icon"
+      ></i>
+    );
+  };
+  const addIcon = () => {
+    return (
+      <div
+        className="add-icon d-inline-block"
+        onClick={() => setCounter(cnt + 1)}
+      >
+        +
+      </div>
+    );
+  };
+  const editIcon = () => {
+    return (
+      <i
+        className="far fa-edit edit-icon d-inline-block"
+        style={{ backgroundColor: edit ? '#fff1c9' : '' }}
+        onClick={() => editNode(!edit)}
+      ></i>
+    );
+  };
+
+  const deleteIcon = () => {
+    return (
+      <div
+        className="delete-icon d-inline-block"
+        onClick={() => deleteNode(treeObj)}
+      >
+        x
+      </div>
+    );
+  };
   useEffect(() => {
     if (!cnt) return;
     addNode(treeObj, cnt);
   }, [cnt]);
 
   return (
-    <div className="comments">
-      <button onClick={() => setCounter(cnt + 1)}>Add item</button>
-      <button onClick={() => deleteNode(treeObj)}>Delete item</button>
-      <button onClick={() => editNode(!edit)}>Edit item</button>
-      <button onClick={() => toggleList(!isVisible)}>Collapse</button>
-
+    <div className="parent">
       {edit && (
-        <div>
-          <input
-            type="text"
-            onChange={e => setNodeText(treeObj, e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          className="form-control length"
+          placeholder="Edit item"
+          onChange={e => setNodeText(treeObj, e.target.value)}
+        />
       )}
-      {isVisible &&
+      <div className="action-elements">
+        {collapseIcon()}
+        {addIcon()}
+        {editIcon()}
+        {deleteIcon()}
+      </div>
+      {isListVisible &&
         children.map((x, i) => (
-          <div className="comment">
+          <div className="child">
             <span
               draggable
               onDrag={e => onDragCallback(e, treeObj)}
               onDragOver={onDragOverCallback}
               onDrop={e => onDropCallback(e, treeObj)}
             >
-              {x.content}
+              <span className="content">{x.content}</span>
             </span>
             {x.children && (
               <NodeElement
