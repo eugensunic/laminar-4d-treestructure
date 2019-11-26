@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Checkbox from './Checkbox';
 
 function NodeElement(props) {
   const {
@@ -84,8 +85,8 @@ function NodeElement(props) {
         {deleteIcon()}
       </div>
 
-      {attributes.map(x => (
-        <div className="d-inline-block">{x}</div>
+      {attributes.map((val, i) => (
+        <Checkbox id={i} value={val} />
       ))}
       {isListVisible &&
         children.map((x, i) => (
