@@ -4,6 +4,7 @@ import NodeElement from './NodeElement';
 function TreeView() {
   const [treeObj, setState] = useState({
     content: '',
+    attributes: [],
     children: []
   });
 
@@ -13,6 +14,7 @@ function TreeView() {
     console.log(treeObj);
     obj.children.push({
       content: `add text`,
+      attributes: [],
       children: []
     });
     setState(JSON.parse(JSON.stringify(treeObj)));
@@ -20,6 +22,11 @@ function TreeView() {
 
   const deleteNode = obj => {
     obj.children = [];
+    setState(JSON.parse(JSON.stringify(treeObj)));
+  };
+
+  const addPropsToNode = obj => {
+    obj.attributes.push('value1');
     setState(JSON.parse(JSON.stringify(treeObj)));
   };
 
@@ -55,14 +62,14 @@ function TreeView() {
 
   return (
     <NodeElement
-      children={treeObj.children}
+      treeObj={treeObj}
       addNode={addNode}
-      deleteNode={deleteNode}
+      addPropsToNode={addPropsToNode}
       setNodeText={setNodeText}
+      deleteNode={deleteNode}
       onDragCallback={onDragCallback}
       onDragOverCallback={onDragOverCallback}
       onDropCallback={onDropCallback}
-      treeObj={treeObj}
     />
   );
 }

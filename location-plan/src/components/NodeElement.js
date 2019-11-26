@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 
 function NodeElement(props) {
   const {
-    children,
-    addNode,
-    deleteNode,
     treeObj,
+    addNode,
+    addPropsToNode,
     setNodeText,
+    deleteNode,
     onDragCallback,
     onDragOverCallback,
     onDropCallback
   } = props;
+
+  const { children, attributes } = treeObj;
 
   const [edit, editNode] = useState(false);
   const [isListVisible, toggleList] = useState(true);
@@ -56,6 +58,14 @@ function NodeElement(props) {
     );
   };
 
+  const addCustomPropsIcon = () => {
+    return (
+      <div className="d-inline-block" onClick={() => addPropsToNode(treeObj)}>
+        add custom
+      </div>
+    );
+  };
+
   return (
     <div className="parent">
       {edit && (
@@ -70,8 +80,13 @@ function NodeElement(props) {
         {collapseIcon()}
         {addIcon()}
         {editIcon()}
+        {addCustomPropsIcon()}
         {deleteIcon()}
       </div>
+
+      {attributes.map(x => (
+        <div className="d-inline-block">{x}</div>
+      ))}
       {isListVisible &&
         children.map((x, i) => (
           <div className="child">
@@ -93,6 +108,7 @@ function NodeElement(props) {
                 onDragCallback={onDragCallback}
                 onDragOverCallback={onDragOverCallback}
                 onDropCallback={onDropCallback}
+                addPropsToNode={addPropsToNode}
                 treeObj={x}
               />
             )}
