@@ -91,7 +91,7 @@ function NodeElement(props) {
       <div>
         <input
           type="text"
-          className="form-control length d-inline-block"
+          className="form-control length d-inline-block insert-prop"
           placeholder="Attribute name"
           onChange={e =>
             addCustomAttribute({ ...customAttribute, value: e.target.value })
@@ -103,10 +103,11 @@ function NodeElement(props) {
 
   return (
     <div className="parent">
+      {/* {console.log('went inside', treeObj)} */}
       {edit && (
         <input
           type="text"
-          className="form-control length d-inline-block"
+          className="form-control length d-inline-block edit-node-title"
           placeholder="Edit item"
           onChange={e => setNodeText(treeObj, e.target.value)}
         />
@@ -124,32 +125,34 @@ function NodeElement(props) {
           <Checkbox key={i} id={i} value={val} />
         ))}
       </div>
-      {isListVisible &&
-        children.map((x, i) => (
-          <div className="child" key={i}>
-            <span
-              draggable
-              onDrag={e => onDragCallback(e, treeObj)}
-              onDragOver={onDragOverCallback}
-              onDrop={e => onDropCallback(e, treeObj)}
-            >
-              <span className="content">{x.content}</span>
-            </span>
-            {x.children && (
-              <NodeElement
-                children={x.children}
-                addNode={addNode}
-                deleteNode={deleteNode}
-                setNodeText={setNodeText}
-                onDragCallback={onDragCallback}
-                onDragOverCallback={onDragOverCallback}
-                onDropCallback={onDropCallback}
-                addPropsToNode={addPropsToNode}
-                treeObj={x}
-              />
-            )}
-          </div>
-        ))}
+      <div className="children-list">
+        {isListVisible &&
+          children.map((x, i) => (
+            <div className="child" key={i}>
+              <span
+                draggable
+                onDrag={e => onDragCallback(e, treeObj)}
+                onDragOver={onDragOverCallback}
+                onDrop={e => onDropCallback(e, treeObj)}
+              >
+                <span className="content">{x.content}</span>
+              </span>
+              {x.children && (
+                <NodeElement
+                  children={x.children}
+                  addNode={addNode}
+                  deleteNode={deleteNode}
+                  setNodeText={setNodeText}
+                  onDragCallback={onDragCallback}
+                  onDragOverCallback={onDragOverCallback}
+                  onDropCallback={onDropCallback}
+                  addPropsToNode={addPropsToNode}
+                  treeObj={x}
+                />
+              )}
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
