@@ -4,13 +4,13 @@
 
 Application consists of a tree which can span indefinitely by adding nodes, sub nodes. It represents a hierarchy for project management
 where one is able to observe the parent-child structure of appended elements. Nodes can be edited, deleted, collapsed and extracted by adding checkbox properties.
-Deleting a node will result in the deletion of all of its children's. Collapse action will toggle the children's of the parent node. 
+Deleting a node will result in the deletion of all of its children's. Collapse action will toggle the children's of the parent node.
 
 ### Example scenario (rail project structure)
 
 A rail project will have multiple stations, each with multiple levels (not necessarily the same number for each station), and
 each level may have areas, and each area may have a list of rooms in it. Thereby, the hierarchy would look like:
-```Project > Station > Level > Area > Room```
+`Project > Station > Level > Area > Room`
 The above might not be the same for every construction site, it can be structured differently in terms of amount as well as main and sub elements.
 
 ### Getting started (configure Node and Git)
@@ -29,11 +29,15 @@ Currently, the app doesn't use Typescript.
 
 After setting up Git and Node (npm included) open your Terminal/Command Prompt.
 
-1. clone the repository to your computer: 
-```git clone https://github.com/eugensunic/laminar-4d-treestructure.git```.
-2. to install the frontend go inside the directory *location-plan* (folder must contain *package.json*) and run:
- **npm install**.
+1. clone the repository to your computer:
+   `git clone https://github.com/eugensunic/laminar-4d-treestructure.git`.
+2. to install the frontend go inside the directory _location-plan_ (folder must contain _package.json_) and run:
+   **npm install**.
 3. to run the app execute **npm run start**. App should run on port 3000 (http://localhost:3000) if port not occupied otherwise, it will assign the next available port number.
 4. to run tests execute **npm run test**.
 
+### Additional info
 
+- all elements are custom styled with minimal aid of Bootstrap 4 framework
+- adding checkbox attributes to values are possible but cannot be deleted.
+- all nodes except the first are to be defined (providing a name for them) by inserting the text in the input field. Default value is add text.
