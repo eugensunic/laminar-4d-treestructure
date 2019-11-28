@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Laminar location plan
 
-## Available Scripts
+### Technical description
 
-In the project directory, you can run:
+Application consists of a tree which can span indefinitely by adding nodes sub nodes. It represents a hierarchy for project management
+where one is able to observe the parent-child structure of appended elements. Nodes can be edited, deleted, collapsed and extracted by adding checkbox properties.
+Deleting a node will result in the deletion of all of its children's. Collapse action will toggle the children's of the parent node. 
 
-### `yarn start`
+### Example scenario (rail project structure)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A rail project will have multiple stations, each with multiple levels (not necessarily the same number for each station), and
+each level may have areas, and each area may have a list of rooms in it. Thereby, the hierarchy would look like:
+Project > Station > Level > Area > Room
+The above might not be the same for every construction site, it can be structured differently in terms of amount as well as main and sub elements.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Getting started (configure Node and Git)
 
-### `yarn test`
+- have Node.js installed on your machine. Install node [here](https://nodejs.org/en/download/). Node comes with npm (package manager) needed for executing commands in order to install, and run the app.
+- have Git installed. Follow instructions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Application composition
 
-### `yarn build`
+The application consists of a frontend only.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The frontend is written in React.js (16+) using ES6, and HTML + CSS. Unit tests are written using Enzyme and Jest framework.
+Currently, the app doesn't use Typescript.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Download repository and run the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After setting up Git and Node (npm included) open your Terminal/Command Prompt.
 
-### `yarn eject`
+Clone the repository to your computer: ```git clone https://github.com/eugensunic/laminar-4d-treestructure.git```.
+To install the frontend go inside the directory *location-plan* (folder must contain *package.json*) and run: **npm install**.
+To run the app execute **npm run start**. App should run on port 3000 (http://localhost:3000/) if port not occupied, otherwise it will assign the next available port number.
+To run tests execute **npm run test**.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
