@@ -103,7 +103,6 @@ function NodeElement(props) {
 
   return (
     <div className="parent">
-      {/* {console.log('went inside', treeObj)} */}
       {edit && (
         <input
           type="text"

@@ -1,18 +1,21 @@
 import TreeView from '../components/TreeView';
-import NodeElement from '../components/NodeElement';
 import React from 'react';
-import { mount, render, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
-describe('TreeView', () => {
-  it('should render view', () => {
-    const wrapper = mount(<TreeView />);
-    expect(wrapper.html()).toBeTruthy();
+describe('TreeView Component', () => {
+  let wrapper;
+  let html;
+
+  beforeEach(() => {
+    wrapper = mount(<TreeView />);
+    html = wrapper.html();
   });
 
-  it('should add element to list and display (total elements:2)', () => {
-    const wrapper = mount(<TreeView />);
-    // console.log('treeview', wrapper.debug());
+  it('should render view', () => {
+    expect(html).toBeTruthy();
+  });
 
+  it('should add element to list and display (total elements: 2)', () => {
     const addItemButton = wrapper.find('.add-icon');
     addItemButton.simulate('click');
 
@@ -22,8 +25,6 @@ describe('TreeView', () => {
   });
 
   it('should edit title of node element', () => {
-    const wrapper = mount(<TreeView />);
-
     // add child item for editing
     const addItemButton = wrapper.find('.add-icon');
     addItemButton.simulate('click');
@@ -45,8 +46,6 @@ describe('TreeView', () => {
   });
 
   it('should show list of children elements', () => {
-    const wrapper = mount(<TreeView />);
-
     const addItemButton = wrapper.find('.add-icon').at(0);
 
     addItemButton.simulate('click');
@@ -62,8 +61,6 @@ describe('TreeView', () => {
   });
 
   it('should hide list of children elements', () => {
-    const wrapper = mount(<TreeView />);
-
     const addItemButton = wrapper.find('.add-icon').at(0);
 
     addItemButton.simulate('click');
@@ -83,41 +80,35 @@ describe('TreeView', () => {
     ).toBeFalsy();
   });
 
-  it('should delete element to list and display (total elements:1)', () => {
-    const wrapper = mount(<TreeView />);
-
+  it('should delete element in list and display (total elements:1)', () => {
     const addItemButton = wrapper.find('.add-icon');
-    const deleteItemButton = wrapper.find('.delete-icon');
-    addItemButton.simulate('click');
 
+    addItemButton.simulate('click');
     wrapper.update();
 
+    const deleteItemButton = wrapper.find('.delete-icon').at(0);
     deleteItemButton.simulate('click');
-
     wrapper.update();
 
     expect(wrapper.find('.delete-icon')).toHaveLength(1);
   });
 
-  it('should add checkbox UI element to node representing custom attribute ', () => {
-    const wrapper = mount(<TreeView />);
-
+  xit('should add checkbox UI element to node representing custom attribute ', () => {
     // trigger input field for checkbox value
     const addCheckbox = wrapper.find('.custom-property');
     addCheckbox.simulate('click');
-
     wrapper.update();
+
     const inputPropElement = wrapper.find('.insert-prop');
     // write value inside input
     inputPropElement.simulate('change', {
       target: { name: '', value: 'checkbox1' }
     });
-
     wrapper.update();
     // append checkbox
     addCheckbox.simulate('click');
     wrapper.update();
 
-    expect(wrapper.html()).toContain('checkbox1');
+    expect(html).toContain('checkbox1');
   });
 });

@@ -1,8 +1,8 @@
 import NodeElement from '../components/NodeElement';
 import React from 'react';
-import { mount, render, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
-describe('NodeElement UI', () => {
+describe('NodeElement Component', () => {
   it('should render view', () => {
     const mockTreeObj = {
       content: '',
@@ -10,7 +10,9 @@ describe('NodeElement UI', () => {
       children: []
     };
     const wrapper = mount(<NodeElement treeObj={mockTreeObj} />);
-    expect(wrapper.html()).toBeTruthy();
+    const html = wrapper.html();
+
+    expect(html).toBeTruthy();
   });
 
   it('should contain main action elements (add, edit, open input, delete)', () => {
@@ -62,8 +64,6 @@ describe('NodeElement UI', () => {
     expect(html).toContain('value1');
     expect(html).toContain('value2');
     expect(html).toContain('value3');
-
-    console.log(wrapper.html());
   });
 
   it('should contain 3 checkboxes', () => {
@@ -78,10 +78,6 @@ describe('NodeElement UI', () => {
     expect(wrapper.find('.form-check-input')).toHaveLength(3);
     expect(html).toContain('checkbox1');
     expect(html).toContain('checkbox2');
-    expect(html).toContain('checkbox3'); 
-
-    console.log(wrapper.html());
+    expect(html).toContain('checkbox3');
   });
 });
-
-describe('NodeElement actions', () => {});

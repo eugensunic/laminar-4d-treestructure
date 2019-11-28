@@ -11,7 +11,7 @@ function TreeView() {
   const [reference, setReference] = useState(null);
 
   const addNode = obj => {
-    console.log(treeObj);
+    // console.log(treeObj);
     obj.children.push({
       content: `add text`,
       attributes: [],
