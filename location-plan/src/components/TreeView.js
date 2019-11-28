@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import NodeElement from './NodeElement';
 import { deepClone } from '../utils/index';
 
-function TreeView() {
+function TreeView(props) {
+  const { title } = props;
   const [treeObj, setState] = useState({
     content: '',
     attributes: [],
@@ -62,16 +63,22 @@ function TreeView() {
   };
 
   return (
-    <NodeElement
-      treeObj={treeObj}
-      addNode={addNode}
-      addAttributesToNode={addAttributesToNode}
-      setNodeText={setNodeText}
-      deleteNode={deleteNode}
-      onDragCallback={onDragCallback}
-      onDragOverCallback={onDragOverCallback}
-      onDropCallback={onDropCallback}
-    />
+    <div>
+      <h3 id="project-heading" className="text-center">
+        {title}
+      </h3>
+      <NodeElement
+        firstNodeTitle={'Project'}
+        treeObj={treeObj}
+        addNode={addNode}
+        addAttributesToNode={addAttributesToNode}
+        setNodeText={setNodeText}
+        deleteNode={deleteNode}
+        onDragCallback={onDragCallback}
+        onDragOverCallback={onDragOverCallback}
+        onDropCallback={onDropCallback}
+      />
+    </div>
   );
 }
 

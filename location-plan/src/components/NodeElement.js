@@ -3,6 +3,7 @@ import Checkbox from './Checkbox';
 
 function NodeElement(props) {
   const {
+    firstNodeTitle,
     treeObj,
     addNode,
     addAttributesToNode,
@@ -21,6 +22,8 @@ function NodeElement(props) {
     value: null
   });
   const [isListVisible, toggleList] = useState(true);
+
+  const isFirstNode = () => !treeObj.content;
 
   const collapseIcon = () => {
     return isListVisible ? (
@@ -63,7 +66,7 @@ function NodeElement(props) {
     );
   };
 
-  const addCustomPropsIcon = () => {
+  const addCustomAttributeIcon = () => {
     return customAttribute.activateInput ? (
       <div
         className="d-inline-block custom-property"
@@ -103,6 +106,7 @@ function NodeElement(props) {
 
   return (
     <div className="parent">
+      {isFirstNode() && <span id="first-node">{firstNodeTitle}</span>}
       {edit && (
         <input
           type="text"
@@ -115,9 +119,9 @@ function NodeElement(props) {
       <div className="action-elements">
         {collapseIcon()}
         {addIcon()}
-        {editIcon()}
-        {addCustomPropsIcon()}
         {deleteIcon()}
+        {!isFirstNode() && editIcon()}
+        {!isFirstNode() && addCustomAttributeIcon()}
       </div>
       <div id="checkbox-container">
         {attributes.map((val, i) => (

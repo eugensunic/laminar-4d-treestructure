@@ -18,6 +18,19 @@ code {
 input.length {
   width: 220px;
 }
+
+/* info elements */
+#project-heading {
+  color: #575555;
+  padding: 10px;
+}
+
+#first-node {
+  font-size: 20px;
+  color: #3866c6;
+  font-weight: 600;
+}
+
 /* static display elements */
 .parent {
   margin-left: 20px;
