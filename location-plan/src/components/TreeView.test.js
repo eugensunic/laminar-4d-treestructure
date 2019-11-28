@@ -4,15 +4,13 @@ import { mount } from 'enzyme';
 
 describe('TreeView Component', () => {
   let wrapper;
-  let html;
 
   beforeEach(() => {
     wrapper = mount(<TreeView />);
-    html = wrapper.html();
   });
 
   it('should render view', () => {
-    expect(html).toBeTruthy();
+    expect(wrapper.html()).toBeTruthy();
   });
 
   it('should add element to list and display (total elements: 2)', () => {
@@ -93,7 +91,7 @@ describe('TreeView Component', () => {
     expect(wrapper.find('.delete-icon')).toHaveLength(1);
   });
 
-  xit('should add checkbox UI element to node representing custom attribute ', () => {
+  it('should add checkbox UI element to node representing custom attribute ', () => {
     // trigger input field for checkbox value
     const addCheckbox = wrapper.find('.custom-property');
     addCheckbox.simulate('click');
@@ -109,6 +107,6 @@ describe('TreeView Component', () => {
     addCheckbox.simulate('click');
     wrapper.update();
 
-    expect(html).toContain('checkbox1');
+    expect(wrapper.html()).toContain('checkbox1');
   });
 });
