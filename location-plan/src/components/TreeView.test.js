@@ -13,6 +13,19 @@ describe('TreeView Component', () => {
     expect(wrapper.html()).toBeTruthy();
   });
 
+  it('should display title ', () => {
+    wrapper = mount(
+      <TreeView title="Railway project" firstNodeTitle="Project" />
+    );
+    
+    // title
+    expect(wrapper.html()).toContain(
+      '<h3 id="project-heading" class="text-center">Railway project</h3>'
+    );
+    // first node
+    expect(wrapper.html()).toContain('<span id="first-node">Project</span>');
+  });
+
   it('should add element to list and display (total elements: 2)', () => {
     const addItemButton = wrapper.find('.add-icon');
     addItemButton.simulate('click');
@@ -29,7 +42,7 @@ describe('TreeView Component', () => {
     wrapper.update();
 
     // trigger input field opening
-    const editIconButton = wrapper.find('.edit-icon').at(1);
+    const editIconButton = wrapper.find('.edit-icon').at(0);
     editIconButton.simulate('click');
     wrapper.update();
 
@@ -92,6 +105,11 @@ describe('TreeView Component', () => {
   });
 
   it('should add checkbox UI element to node representing custom attribute ', () => {
+    // add node to allow checkbox adding
+    const addItemButton = wrapper.find('.add-icon');
+    addItemButton.simulate('click');
+    wrapper.update();
+
     // trigger input field for checkbox value
     const addCheckbox = wrapper.find('.custom-property');
     addCheckbox.simulate('click');

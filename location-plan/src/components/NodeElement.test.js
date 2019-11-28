@@ -15,11 +15,33 @@ describe('NodeElement Component', () => {
     expect(html).toBeTruthy();
   });
 
-  it('should contain main action elements (add, edit, open input, delete)', () => {
+  it('should contain add and delete action elements only', () => {
     const mockTreeObj = {
       content: '',
       attributes: [],
       children: []
+    };
+
+    const wrapper = mount(<NodeElement treeObj={mockTreeObj} />);
+    const html = wrapper.html();
+
+    // add icon UI element
+    expect(html).toContain('<div class="add-icon d-inline-block">+</div>');
+    // delete UI element
+    expect(html).toContain('<div class="delete-icon d-inline-block">x</div>');
+  });
+
+  it('should contain main action elements (add, edit, open input, delete)', () => {
+    const mockTreeObj = {
+      content: 'value0',
+      attributes: [],
+      children: [
+        {
+          content: 'value1',
+          attributes: [],
+          children: []
+        }
+      ]
     };
 
     const wrapper = mount(<NodeElement treeObj={mockTreeObj} />);
