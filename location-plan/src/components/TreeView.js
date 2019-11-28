@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NodeElement from './NodeElement';
+import { deepClone } from '../utils/index';
 
 function TreeView() {
   const [treeObj, setState] = useState({
@@ -17,22 +18,22 @@ function TreeView() {
       attributes: [],
       children: []
     });
-    setState(JSON.parse(JSON.stringify(treeObj)));
+    setState(deepClone(treeObj));
   };
 
   const deleteNode = obj => {
     obj.children = [];
-    setState(JSON.parse(JSON.stringify(treeObj)));
+    setState(deepClone(treeObj));
   };
 
-  const addPropsToNode = (obj, value) => {
+  const addAttributesToNode = (obj, value) => {
     obj.attributes.push(value);
-    setState(JSON.parse(JSON.stringify(treeObj)));
+    setState(deepClone(treeObj));
   };
 
   const setNodeText = (obj, value) => {
     obj.content = value;
-    setState(JSON.parse(JSON.stringify(treeObj)));
+    setState(deepClone(treeObj));
   };
 
   // drag-drop functions
@@ -57,14 +58,14 @@ function TreeView() {
     treeObj.children = reference.children;
     // reference.children = temp.children;
     // obj.children = [{ content: 'kabuuuum' }];
-    // setState(JSON.parse(JSON.stringify(treeObj)));
+    // setState(deepClonetreeObj)));
   };
 
   return (
     <NodeElement
       treeObj={treeObj}
       addNode={addNode}
-      addPropsToNode={addPropsToNode}
+      addAttributesToNode={addAttributesToNode}
       setNodeText={setNodeText}
       deleteNode={deleteNode}
       onDragCallback={onDragCallback}

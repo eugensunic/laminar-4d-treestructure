@@ -5,7 +5,7 @@ function NodeElement(props) {
   const {
     treeObj,
     addNode,
-    addPropsToNode,
+    addAttributesToNode,
     setNodeText,
     deleteNode,
     onDragCallback,
@@ -46,7 +46,7 @@ function NodeElement(props) {
     return (
       <i
         className="far fa-edit edit-icon d-inline-block"
-        style={{ backgroundColor: edit ? '#fff1c9' : '' }}
+        style={{ backgroundColor: edit ? '#fff1c9' : null }}
         onClick={() => editNode(!edit)}
       ></i>
     );
@@ -69,7 +69,7 @@ function NodeElement(props) {
         className="d-inline-block custom-property"
         onClick={() => {
           addCustomAttribute({ ...customAttribute, activateInput: false });
-          addPropsToNode(treeObj, customAttribute.value);
+          addAttributesToNode(treeObj, customAttribute.value);
         }}
       >
         Add item
@@ -145,7 +145,7 @@ function NodeElement(props) {
                   onDragCallback={onDragCallback}
                   onDragOverCallback={onDragOverCallback}
                   onDropCallback={onDropCallback}
-                  addPropsToNode={addPropsToNode}
+                  addAttributesToNode={addAttributesToNode}
                   treeObj={x}
                 />
               )}
