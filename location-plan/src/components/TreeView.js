@@ -9,11 +9,9 @@ function TreeView(props) {
     attributes: [],
     children: []
   });
-
   const [reference, setReference] = useState(null);
 
   const addNode = obj => {
-    // console.log(treeObj);
     obj.children.push({
       content: `add text`,
       attributes: [],
@@ -39,10 +37,9 @@ function TreeView(props) {
 
   // drag-drop functions
   const onDragCallback = (e, obj) => {
-    console.log('dragging!');
-    e.stopPropagation();
     e.preventDefault();
-    setReference(obj.children);
+    // save dragged object to state
+    setReference({ ...obj });
   };
 
   const onDragOverCallback = e => {
@@ -51,15 +48,15 @@ function TreeView(props) {
   };
 
   const onDropCallback = (e, obj) => {
-    console.log('treeObj', treeObj);
-    console.log('drop obj:', obj, 'ref obj:', reference);
-    e.stopPropagation();
     e.preventDefault();
-    // let temp = obj;
-    treeObj.children = reference.children;
-    // reference.children = temp.children;
-    // obj.children = [{ content: 'kabuuuum' }];
-    // setState(deepClonetreeObj)));
+    // store children's before overriding
+    const tempChildren = deepClone(obj);
+    // insert dragged object to the dropped area
+    obj.children = deepClone(reference.children);
+    // preform switch
+    reference.children = tempChildren;
+
+    setState(deepClone(treeObj));
   };
 
   return (
